@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import styles from "./TodoItem.module.css";
 
 export default function TodoItem({ todo, onUpdate, onDelete, filter }) {
   const [checked, setChecked] = useState(false);
@@ -7,19 +8,24 @@ export default function TodoItem({ todo, onUpdate, onDelete, filter }) {
     setChecked(!checked);
     onUpdate({ ...todo, status: e.target.checked ? "completed" : "active" });
   };
-  if(filter !== 'all' && todo.status !== filter) return;
+  if (filter !== "all" && todo.status !== filter) return;
   return (
-    <li>
+    <li className={styles.todo}>
       <input
+        className={styles.checkbox}
         type="checkbox"
         checked={checked}
         onChange={handlechecked}
         id={`checkbox${todo.id}`}
       />
-      <label htmlFor={`checkbox${todo.id}`}>{todo.text}</label>
-      <button onClick={() => onDelete(todo)}>
-        <FaTrashAlt />
-      </button>
+      <label className={styles.text} htmlFor={`checkbox${todo.id}`}>
+        {todo.text}
+      </label>
+      <span className={styles.icon}>
+        <button className={styles.button} onClick={() => onDelete(todo)}>
+          <FaTrashAlt />
+        </button>
+      </span>
     </li>
   );
 }

@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TodoList from "./components/TodoList/TodoList";
 import Header from "./components/Header/Header";
 
@@ -8,7 +8,7 @@ function App() {
   const [filter, setFilter] = useState(filters[0])
   return (
     <>
-      <Header filters={filters} onFilterChange={setFilter} />
+      <Header filter={filter} filters={filters} onFilterChange={setFilter} />
       <TodoList filter={filter}/>
     </>
   );
