@@ -1,9 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import TodoList from "./components/TodoList/TodoList";
+import Header from "./components/Header/Header";
 
 function App() {
+  const filters = ['all', 'active', 'completed']
+  const [filter, setFilter] = useState(filters[0])
   return (
-    <div></div>
+    <>
+      <Header filters={filters} onFilterChange={setFilter} />
+      <TodoList filter={filter}/>
+    </>
   );
 }
 
