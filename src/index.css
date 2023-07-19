@@ -6,6 +6,8 @@
   --color-accent: #f16e03;
   --color-white: white;
   --color-scrollbar: #aaa7a7;
+  --color-darkMode-darker: #262626;
+  --color-darkMode: #333333;
 }
 
 #root{

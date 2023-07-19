@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./AddTodo.module.css";
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 export default function AddTodo({ onAdd }) {
   const [text, setText] = useState("");
@@ -11,8 +12,9 @@ export default function AddTodo({ onAdd }) {
     onAdd({ id: uuidv4(), text, status: "active" });
     setText("");
   };
+  const {darkMode} = useContext(DarkModeContext)
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={`${darkMode === true && styles.darkMode} ${styles.form}`} onSubmit={handleSubmit}>
       <input className={styles.input}
         type="text"
         placeholder="Add Todo"

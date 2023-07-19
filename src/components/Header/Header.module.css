@@ -6,20 +6,23 @@
   border-bottom: 1px solid var(--color-grey);
 }
 
+.header.darkMode{
+  background-color: var(--color-darkMode-darker);
+  border-bottom: 1px solid #1a1a1a;
+}
+
 .filters{
   display: flex;
 }
 
 .filter{
   font-size: 1.2rem;
-  /* margin: 0rem 0.4rem; */
   padding: 0 1rem;
   text-transform: capitalize;
   background-color: transparent;
   color: var(--color-accent);
   opacity: 0.8;
   font-weight: bold;
-  border-right: 0.5px solid black;
   cursor: pointer;
 }
 
@@ -34,4 +37,11 @@
   display: block;
   margin-top: 0.2rem;
   border: 1.5px solid #000;
+}
+
+.filter.selected.darkMode:after{
+  content: '';
+  display: block;
+  margin-top: 0.2rem;
+  border: 1px solid white;
 }

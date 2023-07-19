@@ -5,6 +5,10 @@
   background-color: var(--color-bg-dark);
 }
 
+.form.darkMode{
+  background-color: var(--color-darkMode-darker);
+}
+
 .input{
   font-size: 1.4rem;
   padding: 0.7rem 1rem;

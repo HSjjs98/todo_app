@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import styles from "./TodoItem.module.css";
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 export default function TodoItem({ todo, onUpdate, onDelete, filter }) {
   const [checked, setChecked] = useState(false);
@@ -8,6 +9,7 @@ export default function TodoItem({ todo, onUpdate, onDelete, filter }) {
     setChecked(!checked);
     onUpdate({ ...todo, status: e.target.checked ? "completed" : "active" });
   };
+  const {darkMode} = useContext(DarkModeContext)
   if (filter !== "all" && todo.status !== filter) return;
   return (
     <li className={styles.todo}>
@@ -18,7 +20,7 @@ export default function TodoItem({ todo, onUpdate, onDelete, filter }) {
         onChange={handlechecked}
         id={`checkbox${todo.id}`}
       />
-      <label className={styles.text} htmlFor={`checkbox${todo.id}`}>
+      <label className={`${darkMode && styles.darkMode} ${styles.text}`} htmlFor={`checkbox${todo.id}`}>
         {todo.text}
       </label>
       <span className={styles.icon}>

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import TodoItem from "../TodoItem/TodoItem";
 import styles from './TodoList.module.css'
+import { DarkModeContext } from "../../context/DarkModeContext";
 
 export default function TodoList({filter}) {
   const [todos, setTodos] = useState([
@@ -18,9 +19,10 @@ export default function TodoList({filter}) {
   const handleDelete = (deleted) => {
     setTodos(todos.filter((t) => t.id !== deleted.id));
   };
+  const { darkMode } = useContext(DarkModeContext);
   return (
     <>
-      <section className={styles.container}>
+      <section className={`${darkMode === true && styles.darkMode} ${styles.container}`}>
         <ul className={styles.list}>
           {todos.map((item) => (
             <TodoItem
