@@ -1,15 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import TodoItem from "../TodoItem/TodoItem";
 import styles from './TodoList.module.css'
 import { DarkModeContext } from "../../context/DarkModeContext";
 
 export default function TodoList({filter}) {
-  const [todos, setTodos] = useState([
-    { id: "1", text: "달리기", status: "active" },
-    { id: "2", text: "공부하기", status: "active" },
-    { id: "3", text: "설거지하기", status: "active" },
-  ]);
+  const readTodosFromLocalStorage = () => {
+    const todos = localStorage.getItem('todos')
+    return todos ? JSON.parse(todos): []
+  }
+  const [todos, setTodos] = useState(() => readTodosFromLocalStorage());
   const handleAdd = (todo) => {
     setTodos((todos) => todos.concat(todo));
   };
@@ -20,6 +20,9 @@ export default function TodoList({filter}) {
     setTodos(todos.filter((t) => t.id !== deleted.id));
   };
   const { darkMode } = useContext(DarkModeContext);
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos])
   return (
     <>
       <section className={`${darkMode === true && styles.darkMode} ${styles.container}`}>
